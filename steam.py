@@ -1,28 +1,19 @@
 from time import sleep
-import toml
-from colorama import Style, Fore
 from requests import post
-from tqdm import tqdm, trange
+from Bot import Bot
 
-#config = open("config.txt",'r')
-#comentarios = open("comentarios.txt",'r')
-login_secure = "LOGIN SECURE AQUI"
-session_id = "ID AQUI"
-sleeptime = 15
 
-#Usuario que recebera os comentarios
-usuario = ['ID DO USUARIO AQUI']
+'''
+    How to get
+        user_id         --> Go to https://steamidfinder.com/
+        session_id      --> Go to steam in your browser, INSPECT the page, find session_id var
+        login_secure    --> Go to browser cookies, find steam cookie and get login_secure
 
-comentario = 'Seu comentario aqui!'
+'''
 
-data = {"comment": comentario, "sessionid": session_id, "feature2": -1}
-cookies = {"sessionid": session_id, "steamLoginSecure": login_secure}
+users = ['USER_ID']
+comments = ['comment']
+session_id = 'SESSION_ID'
+login_secure = 'LOGIN_SECURE'
 
-for c in comentario:
-    data = {"comment": c, "sessionid": session_id, "feature2": -1}
-    cookies = {"sessionid": session_id, "steamLoginSecure": login_secure}
-    resp = post(f"https://steamcommunity.com/comment/Profile/post/{0}/-1", data=data, cookies=cookies).format(usuario)
-    print(resp.json())
-    
-    
-    
+steam_bot = Bot(users,comments,session_id,login_secure)
